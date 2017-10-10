@@ -1,31 +1,47 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, combineReducers, compose  } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import {createLogger} from 'redux-logger'
+import reducer from './app/reducers'
+
+const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__  });
+
+function configureStore(initialState) {
+  const enhancer = compose(
+    applyMiddleware(
+      thunkMiddleware,
+      loggerMiddleware
+    ),
+  );
+  return createStore(reducer, initialState, enhancer)
+}
+
+const store = configureStore({});
+
 import {
   AppRegistry,
   StyleSheet,
   View,
   Text
 } from 'react-native';
-import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
-import store from './store/store.js';
-import CounterContainer from './containers/CounterContainer.js';
 
-export default class App extends Component {
+class Gpsteam extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <CounterContainer/>
+        <View>
+          <Text>
+              GPSteam
+          </Text>
         </View>
-      </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+const App = () => (
+  <Provider store={store}>
+    <Gpsteam />
+  </Provider>
+)
+
+export default App
