@@ -1,0 +1,3 @@
+rootProject.name = 'gpsteam_m'
+
+include ':app'
