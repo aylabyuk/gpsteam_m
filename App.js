@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, combineReducers, compose  } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import reducer from './app/reducers'
+import {composeWithDevTools } from 'redux-devtools-extension'
+import AppContainer from './app/containers/AppContainer'
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__  });
 
 function configureStore(initialState) {
-  const enhancer = compose(
+  const enhancer = composeWithDevTools(
     applyMiddleware(
       thunkMiddleware,
       loggerMiddleware
@@ -26,21 +28,9 @@ import {
   Text
 } from 'react-native';
 
-class Gpsteam extends Component {
-  render() {
-    return (
-        <View>
-          <Text>
-              GPSteam
-          </Text>
-        </View>
-    );
-  }
-}
-
 const App = () => (
   <Provider store={store}>
-    <Gpsteam />
+    <AppContainer />
   </Provider>
 )
 
