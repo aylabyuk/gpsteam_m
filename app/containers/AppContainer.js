@@ -21,12 +21,13 @@ class AppContainer extends Component {
                 <Text style={{ marginTop: 20  }}>
                     I am AppContainer! Stuff Count: { this.props.stuffCount }
                 </Text>
-
+                
                 <Button 
                 onPress={() => {this.addStuff()}}
                 title="Add Stuff"
                 color="#841584"
                 />
+
             </View>
         );
     }
