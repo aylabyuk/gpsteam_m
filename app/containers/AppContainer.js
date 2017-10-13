@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../actions'
 import ReactNative from 'react-native'
+import SplashScreen from 'react-native-splash-screen'
 
 const {
     View,
@@ -15,14 +16,20 @@ class AppContainer extends Component {
         this.props.addStuff()
     }
 
+    componentDidMount() {
+    	  // do stuff while splash screen is shown
+        // After having done stuff (such as async tasks) hide the splash screen
+        window.setTimeout( ()=> SplashScreen.hide(), 1000 )
+    }
+
     render() {
         return (
             <View>
                 <Text style={{ marginTop: 20  }}>
                     I am AppContainer! Stuff Count: { this.props.stuffCount }
                 </Text>
-                
-                <Button 
+
+                <Button
                 onPress={() => {this.addStuff()}}
                 title="Add Stuff"
                 color="#841584"
