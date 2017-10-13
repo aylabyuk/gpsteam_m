@@ -21,13 +21,16 @@ function configureStore(initialState) {
   return createStore(reducer, initialState, enhancer)
 }
 
+
+
 const store = configureStore({});
 
 import {
   AppRegistry,
   StyleSheet,
   View,
-  Text
+  Text,
+  NativeModules
 } from 'react-native';
 
 const App = () => (
