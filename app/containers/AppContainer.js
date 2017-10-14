@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../actions'
 import ReactNative from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
+import MapContainer from './MapContainer'
 
 const {
     View,
@@ -24,18 +25,7 @@ class AppContainer extends Component {
 
     render() {
         return (
-            <View>
-                <Text style={{ marginTop: 20  }}>
-                    I am AppContainer! Stuff Count: { this.props.stuffCount }
-                </Text>
-
-                <Button
-                onPress={() => {this.addStuff()}}
-                title="Add Stuff"
-                color="#841584"
-                />
-
-            </View>
+            <MapContainer />
         );
     }
 }
